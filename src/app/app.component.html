@@ -1,20 +1,136 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div class="container">
+    <br>
+    <h1>Pipes in Angular</h1>
+    <br>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Pipes</th>
+                <th scope="col">Variables</th>
+                <th scope="col">Results</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Uppercase</th>
+                <td>{{x}}</td>
+                <td>{{x | uppercase }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Lowercase</th>
+                <td>{{x}}</td>
+                <td>{{x | lowercase}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Slice (3)</th>
+                <td>{{x}}</td>
+                <td>{{x | slice:3}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Slice (0:3)</th>
+                <td>{{x}}</td>
+                <td>{{x | slice:0:3}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Slice Array (1:5)</th>
+                <td>{{array}}</td>
+                <td>{{array | slice:1:5}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Number ('3.-0-0')</th>
+                <td>{{pi}}</td>
+                <td>{{pi | number:'3.0-0'}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Number ('1.-0-2')</th>
+                <td>{{pi}}</td>
+                <td>{{pi | number:'1.0-2'}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Percent</th>
+                <td>{{pi}}</td>
+                <td>{{pi | percent}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Percent ('2.2-4')</th>
+                <td>{{pi}}</td>
+                <td>{{pi | percent:'2.2-4'}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Currency</th>
+                <td>{{money}}</td>
+                <td>{{money | currency}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Currency ('EUR')</th>
+                <td>{{money}}</td>
+                <td>{{money | currency:'EUR'}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Currency ('EUR':false)</th>
+                <td>{{money}}</td>
+                <td>{{money | currency:'EUR':false}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Currency ('EUR':true:'4.0-0')</th>
+                <td>{{money}}</td>
+                <td>{{money | currency:'EUR':true:'4.0-0'}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Async</th>
+                <td>{{valueOfPromise}}</td>
+                <td>{{valueOfPromise | async}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Date</th>
+                <td>{{date}}</td>
+                <td>{{date | date}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Date ('medium')</th>
+                <td>{{date}}</td>
+                <td>{{date | date:'medium'}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Date ('longDate')</th>
+                <td>{{date}}</td>
+                <td>{{date | date:'longDate'}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Date ('fullDate')</th>
+                <td>{{date}}</td>
+                <td>{{date | date:'fullDate'}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Customizer Pipe: Capitalcase</th>
+                <td>{{name}}</td>
+                <td>{{name | capital}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Customizer Pipe: Capitalcase:2</th>
+                <td>{{name}}</td>
+                <td>{{name | capital:2}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Customizer Pipe: Hide Password</th>
+                <td>{{x}} <button (click)="activate = !activate" type="button" class="btn btn-dark text-right" style="margin-left: 10px;">Activate</button></td>
+                <td>{{x | hidepassword:activate}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h4>Pipe Slice in List: <small>{{array}}</small></h4>
+    <ul>
+        <li *ngFor="let item of array | slice:5:20">{{item}}</li>
+    </ul>
+    <br>
+    <h4>Pipe JSON:</h4>
+    <pre>
+        {{heroe | json}}
+    </pre>
+    <br>
+    <h4>Custumizer Pipe Domsafe <small>Youtube video</small></h4>
+    <hr>
+    <iframe width="100%" height="500px;" [src]="video | domsafe:url" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<br><br><br><br>
